@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Documentation Page</title>
+		<link rel="stylesheet" href="./css/style.css" />
+	</head>
+	<body>
+		<nav id="navbar">
+			<header>Object-oriented JavaScript for beginners</header>
+			<ul>
+				<li>
+					<a class="nav-link" href="#basics"
+						>Object-oriented programming - the basics</a
+					>
+				</li>
+				<li>
+					<a class="nav-link" href="#defining">Defining an object template</a>
+				</li>
+				<li>
+					<a class="nav-link" href="#creating_objects"
+						>Creating actual objects</a
+					>
+				</li>
+				<li><a class="nav-link" href="#specialist">Specialist classes</a></li>
+				<li>
+					<a class="nav-link" href="#constructor"
+						>Constructors and object instances</a
+					>
+				</li>
+				<li>
+					<a class="nav-link" href="#finished"
+						>Creating our finished constructor</a
+					>
+				</li>
+			</ul>
+		</nav>
+		<main id="main-doc">
+			<section class="main-section" id="basics">
+				<header>Object-oriented programming — the basics</header>
+				<article>
+					<p>
+						To start with, let's give you a simplistic, high-level view of what
+						Object-oriented programming (OOP) is. We say simplistic, because OOP
+						can quickly get very complicated, and giving it a full treatment now
+						would probably confuse more than help. The basic idea of OOP is that
+						we use objects to model real world things that we want to represent
+						inside our programs, and/or provide a simple way to access
+						functionality that would otherwise be hard or impossible to make use
+						of.
+					</p>
+					<p>
+						Objects can contain related data and code, which represent
+						information about the thing you are trying to model, and
+						functionality or behavior that you want it to have. Object data (and
+						often, functions too) can be stored neatly (the official word is
+						encapsulated) inside an object package (which can be given a
+						specific name to refer to, which is sometimes called a namespace),
+						making it easy to structure and access; objects are also commonly
+						used as data stores that can be easily sent across the network.
+					</p>
+					<p>In this page you will learn how to:</p>
+					<ul>
+						<li>Define an object template</li>
+						<li>Create actual objects</li>
+						<li>About Specialist classes</li>
+						<li>Constructors and object instances</li>
+						<li>Create our finished constructor</li>
+					</ul>
+				</article>
+			</section>
+			<section class="main-section" id="defining">
+				<header>Defining an object template</header>
+				<article>
+					<p>
+						Let's consider a simple program that displays information about the
+						students and teachers at a school. Here we'll look at OOP theory in
+						general, not in the context of any specific programming language.
+					</p>
+					<p>
+						To start this off, we could return to our Person object type from
+						our first objects article, which defines the generic data and
+						functionality of a person. There are lots of things you could know
+						about a person (their address, height, shoe size, DNA profile,
+						passport number, significant personality traits ...) , but in this
+						case we are only interested in showing their name, age, gender, and
+						interests, and we also want to be able to write a short introduction
+						about them based on this data, and get them to say hello. This is
+						known as abstraction — creating a simple model of a more complex
+						thing, which represents its most important aspects in a way that is
+						easy to work with for our program's purposes.
+					</p>
+					<img src="./person-diagram.png" alt="Defining object" />
+				</article>
+			</section>
+			<section class="main-section" id="creating_objects">
+				<header>Creating actual objects</header>
+				<article>
+					<p>
+						From our class, we can create object instances — objects that
+						contain the data and functionality defined in the class. From our
+						Person class, we can now create some actual people:
+					</p>
+					<img src="./MDN-Graphics-instantiation-2-fixed.png" alt="" />
+					<p>
+						When an object instance is created from a class, the class's
+						constructor function is run to create it. This process of creating
+						an object instance from a class is called instantiation — the object
+						instance is instantiated from the class.
+					</p>
+				</article>
+			</section>
+			<section class="main-section" id="specialist">
+				<article>
+					<header>Specialist classes</header>
+					<p>
+						In this case we don't want generic people — we want teachers and
+						students, which are both more specific types of people. In OOP, we
+						can create new classes based on other classes — these new child
+						classes can be made to inherit the data and code features of their
+						parent class, so you can reuse functionality common to all the
+						object types rather than having to duplicate it. Where functionality
+						differs between classes, you can define specialized features
+						directly on them as needed.
+					</p>
+					<img src="./MDN-Graphics-inherited-3.png" alt="" />
+					<p>
+						This is really useful — teachers and students share many common
+						features such as name, gender, and age, so it is convenient to only
+						have to define those features once. You can also define the same
+						feature separately in different classes, as each definition of that
+						feature will be in a different namespace. For example, a student's
+						greeting might be of the form "Yo, I'm [firstName]" (e.g Yo, I'm
+						Sam), whereas a teacher might use something more formal, such as
+						"Hello, my name is [Prefix] [lastName], and I teach [Subject]." (e.g
+						Hello, My name is Mr Griffiths, and I teach Chemistry).
+					</p>
+					<p>
+						You can now create object instances from your child classes. For
+						example:
+					</p>
+					<img src="./MDN-Graphics-instantiation-teacher-3.png" alt="" />
+					<p>
+						In the rest of the article, we'll start to look at how OOP theory
+						can be put into practice in JavaScript.
+					</p>
+				</article>
+			</section>
+			<section class="main-section" id="constructor">
+				<article>
+					<header>Constructors and object instances</header>
+					<p>
+						JavaScript uses special functions called constructor functions to
+						define and initialize objects and their features. They are useful
+						because you'll often come across situations in which you don't know
+						how many objects you will be creating; constructors provide the
+						means to create as many objects as you need in an effective way,
+						attaching data and functions to them as required.
+					</p>
+					<p>
+						Let's explore creating classes via constructors and creating object
+						instances from them in JavaScript. First of all, we'd like you to
+						make a new local copy of the oojs.html file we saw in our first
+						Objects article.
+					</p>
+					<ol>
+						<li>
+							Let's start by looking at how you could define a person with a
+							normal function. Add this function within the
+							<code>script</code> element:
+
+							<pre class="brush: js">
+function createNewPerson(name) {
+  const obj = {};
+  obj.name = name;
+  obj.greeting = function() {
+  alert('Hi! I\'m ' + obj.name + '.');
+    };
+    return obj;
+  }</pre
+							>
+						</li>
+						<li>
+							You can now create a new person by calling this function — try the
+							following lines in your browser's JavaScript console:
+							<pre class="brush: js">
+const salva = createNewPerson('Salva');
+  salva.name;
+  salva.greeting();</pre
+							>
+							This works well enough, but it is a bit long-winded; if we know we
+							want to create an object, why do we need to explicitly create a
+							new empty object and return it? Fortunately, JavaScript provides
+							us with a handy shortcut, in the form of constructor functions —
+							let's make one now!
+						</li>
+						<li>
+							Replace your previous function with the following:
+							<pre class="brush: js">
+  function Person(name) {
+  this.name = name;
+  this.greeting = function() {
+  alert('Hi! I\'m ' + this.name + '.');
+    };
+  }</pre
+							>
+						</li>
+					</ol>
+
+					<p>
+						The constructor function is JavaScript's version of a class. Notice
+						that it has all the features you'd expect in a function, although it
+						doesn't return anything or explicitly create an object — it
+						basically just defines properties and methods. Notice also the
+						<code>this</code> keyword being used here as well — it is basically
+						saying that whenever one of these object instances is created, the
+						object's <code>name</code> property will be equal to the name value
+						passed to the constructor call, and the
+						<code>greeting()</code> method will use the name value passed to the
+						constructor call too.
+					</p>
+
+					<p>So how do we call a constructor to create some objects?</p>
+
+					<ol>
+						<li>
+							Add the following lines below your previous code addition:
+							<pre class="brush: js">
+let person1 = new Person('Bob');
+let person2 = new Person('Sarah');</pre
+							>
+						</li>
+						<li>
+							Save your code and reload it in the browser, and try entering the
+							following lines into your JS console:
+							<pre class="brush: js">
+person1.name
+  person1.greeting()
+  person2.name
+  person2.greeting()</pre
+							>
+						</li>
+					</ol>
+					<p>
+						Cool! You can now see that we have two new objects on the page, each
+						of which is stored under a different namespace — when you access
+						their properties and methods, you have to start calls with
+						<code>person1</code> or <code>person2</code>; the functionality
+						contained within is neatly packaged away so it won't clash with
+						other functionality. They do, however, have the same
+						<code>name</code> property and <code>greeting()</code> method
+						available. Note that they are using their own
+						<code>name</code> value that was assigned to them when they were
+						created; this is one reason why it is very important to use
+						<code>this</code>, so each one uses its own value, and not some
+						other value.
+					</p>
+					<p>Let's look at the constructor calls again:</p>
+
+					<pre class="brush: js">
+let person1 = new Person('Bob');
+let person2 = new Person('Sarah');</pre
+					>
+
+					<p>
+						In each case, the <code>new</code> keyword is used to tell the
+						browser we want to create a new object instance, followed by the
+						function name with its required parameters contained in parentheses,
+						and the result is stored in a variable — very similar to how a
+						standard function is called. Each instance is created according to
+						this definition:
+					</p>
+
+					<pre class="brush: js">
+function Person(name) {
+  this.name = name;
+  this.greeting = function() {
+    alert('Hi! I\'m ' + this.name + '.');
+  };
+}</pre
+					>
+
+					<p>
+						After the new objects have been created, the
+						<code>person1</code> and <code>person2</code> variables contain the
+						following objects:
+					</p>
+
+					<pre class="brush: js">
+{
+  name: 'Bob',
+  greeting: function() {
+    alert('Hi! I\'m ' + this.name + '.');
+  }
+}
+
+{
+  name: 'Sarah',
+  greeting: function() {
+    alert('Hi! I\'m ' + this.name + '.');
+  }
+}</pre
+					>
+					<p>
+						Note that when we are calling our constructor function, we are
+						defining <code>greeting()</code> every time, which isn't ideal. To
+						avoid this, we can define functions on the prototype instead, which
+						we will look at later.
+					</p>
+				</article>
+			</section>
+			<section class="main-section" id="finished">
+				<article>
+					<header>
+						Creating our finished constructor
+					</header>
+					<p>
+						The example we looked at above was only a simple example to get us
+						started. Let's now get on and create our final
+						<code>Person()</code> constructor function.
+					</p>
+
+					<ol>
+						<li>
+							Remove the code you inserted so far, and add in this replacement
+							constructor — this is exactly the same as the simple example in
+							principle, with just a bit more complexity:
+							<pre class="brush: js">
+function Person(first, last, age,
+ gender, interests) {
+  this.name = {
+     first : first,
+     last : last
+  };
+  this.age = age;
+  this.gender = gender;
+  this.interests = interests;
+  this.bio = function() {
+    alert(this.name.first + 
+    ' ' + this.name.last +
+     ' is ' + this.age + 
+     ' years old. He likes ' +
+      this.interests[0] +
+       ' and ' + 
+       this.interests[1] + '.');
+  };
+  this.greeting = function() {
+    alert('Hi! I\'m ' +
+     this.name.first + '.');
+  };
+}</pre
+							>
+						</li>
+						<li>
+							Now add in the following line below it, to create an object
+							instance from it:
+							<pre class="brush: js">
+let person1 = new Person
+('Bob', 'Smith', 32, 'male',
+ ['music', 'skiing']);</pre
+							>
+						</li>
+					</ol>
+
+					<p>
+						You can now see that you can access the properties and methods just
+						like we did previously — try these in your JS console:
+					</p>
+
+					<pre class="brush: js">
+person1['age']
+person1.interests[1]
+person1.bio()
+// etc.</pre
+					>
+				</article>
+			</section>
+		</main>
+	</body>
+</html>
